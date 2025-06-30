@@ -41,7 +41,7 @@ This project combines QLoRA fine-tuning and RAG techniques to create a smart cod
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/ai-code-review-assistant.git
+git clone https://github.com/justthzz/ai-code-review-assistant.git
 cd ai-code-review-assistant
 ```
 
@@ -108,12 +108,6 @@ Paste a code snippet into the input, and the system will:
 - [ ] Web UI with FastAPI or Streamlit
 - [ ] Multi-language support
 - [ ] CLI Tool version
-
----
-
-## 📜 License
-
-MIT License. See `LICENSE` for more details.
 
 ---
 
