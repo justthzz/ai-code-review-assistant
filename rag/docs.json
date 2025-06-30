@@ -1,0 +1,14 @@
+[
+  {
+    "text": "PEP8 recommends using snake_case for function and variable names."
+  },
+  {
+    "text": "Avoid using os.system or eval for untrusted input due to security vulnerabilities."
+  },
+  {
+    "text": "Loops and conditional statements should follow proper indentation and block formatting in Python."
+  },
+  {
+    "text": "Use descriptive names for functions to improve code readability and maintainability."
+  }
+]

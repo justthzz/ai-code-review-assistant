@@ -1,0 +1,9 @@
+transformers
+datasets
+peft
+bitsandbytes
+sentence-transformers
+faiss-cpu
+torch
+accelerate
+

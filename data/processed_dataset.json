@@ -1,0 +1,17 @@
+[
+  {
+    "instruction": "Review the following code and provide suggestions.",
+    "input": "def calc(x,y): return x+y",
+    "output": "Function name should be more descriptive, like `calculate_sum`. Also, add spacing and use explicit return for clarity."
+  },
+  {
+    "instruction": "Review the following code and provide suggestions.",
+    "input": "import os\nos.system('rm -rf /')",
+    "output": "Avoid using `os.system` with dangerous commands. This is a critical security risk."
+  },
+  {
+    "instruction": "Review the following code and provide suggestions.",
+    "input": "for i in range(10): print(i)",
+    "output": "Use a proper indentation block for readability, especially in loops."
+  }
+]
