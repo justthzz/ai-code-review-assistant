@@ -29,7 +29,7 @@ def get_dataset():
 
     def format(example):
         return {
-            "prompt": f"### Code:\n{example['code']}\n### Task:\nGive a code review comment.",
+            "prompt": f"### Code:\n{example['code']}\n### Task:\nHere is the code. Now, can you review it for issues or improvements?",
             "response": "..."
         }
 
