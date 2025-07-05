@@ -60,7 +60,9 @@ dataset = get_dataset()
 # Tokenize function
 def tokenize(example):
     full_text = f"{example['prompt']} {example['response']}"
-    return tokenizer(full_text, padding="max_length", truncation=True, max_length=512)
+    tokenized = tokenizer(full_text, padding="max_length", truncation=True, max_length=512)
+    tokenized["labels"] = tokenized["input_ids"].copy()  # causal LM expects labels
+    return tokenized
 
 tokenized_dataset = dataset.map(tokenize, batched=False)
 
