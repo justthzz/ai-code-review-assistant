@@ -7,13 +7,13 @@ from sentence_transformers import SentenceTransformer
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel
 
-# === Paths ===
+# Paths
 DOC_PATH = "rag/docs.json"
 INDEX_PATH = "rag/index.faiss"
 ADAPTER_PATH = "checkpoints/qlora-qwen"
 BASE_MODEL_ID = "Qwen/Qwen1.5-0.5B"
 
-# === Load Retrieval Stuff ===
+# Load Retrieval Stuff 
 print("🔍 Loading FAISS index and docs...")
 retriever_model = SentenceTransformer("all-MiniLM-L6-v2")
 index = faiss.read_index(INDEX_PATH)
@@ -26,7 +26,7 @@ def retrieve_context(query_code, k=3):
     D, I = index.search(query_vec, k)
     return [documents[i]["text"] for i in I[0]]
 
-# === Load Fine-Tuned Code Reviewer Model ===
+# Load Fine-Tuned Code Reviewer Model
 print("🧠 Loading fine-tuned model...")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 base_model = AutoModelForCausalLM.from_pretrained(BASE_MODEL_ID, trust_remote_code=True)
@@ -37,7 +37,7 @@ model.eval()
 tokenizer = AutoTokenizer.from_pretrained(ADAPTER_PATH, trust_remote_code=True)
 tokenizer.pad_token = tokenizer.eos_token
 
-# === Combine Prompt ===
+# Combine Prompt
 def create_prompt(code: str, context_docs: list) -> str:
     context_block = "\n\n".join([f"Doc #{i+1}:\n{doc}" for i, doc in enumerate(context_docs)])
     return f"""
@@ -48,12 +48,12 @@ def create_prompt(code: str, context_docs: list) -> str:
 {code}
 
 ### Task:
-You are a senior Python code reviewer. Using the context above, analyze the code and provide suggestions or improvements.
+You are a strict senior Python reviewer. Find ALL issues in the code below — formatting, naming, logic, style, structure — and suggest concrete improvements with examples.
 
 ### Review:
 """
 
-# === Inference Function ===
+# Inference Function
 def review_code_with_context(code: str):
     context_docs = retrieve_context(code)
     prompt = create_prompt(code, context_docs)
@@ -62,14 +62,15 @@ def review_code_with_context(code: str):
         outputs = model.generate(
             **inputs,
             max_new_tokens=512,
-            temperature=0.7,
-            top_p=0.9,
+            # temperature=0.7,
+            # top_p=0.9,
             pad_token_id=tokenizer.eos_token_id
         )
+
     result = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return result.split("### Review:")[-1].strip()
 
-# === CLI Entry ===
+# CLI Entry
 def read_code_from_file(file_path):
     with open(file_path, "r") as f:
         return f.read()
