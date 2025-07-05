@@ -13,7 +13,7 @@ INDEX_PATH = "rag/index.faiss"
 ADAPTER_PATH = "checkpoints/qlora-qwen"
 BASE_MODEL_ID = "Qwen/Qwen1.5-0.5B"
 
-# Load Retrieval Stuff 
+# Load Retrieval Stuff
 print("🔍 Loading FAISS index and docs...")
 retriever_model = SentenceTransformer("all-MiniLM-L6-v2")
 index = faiss.read_index(INDEX_PATH)
@@ -48,7 +48,7 @@ def create_prompt(code: str, context_docs: list) -> str:
 {code}
 
 ### Task:
-You are a strict senior Python reviewer. Find ALL issues in the code below — formatting, naming, logic, style, structure — and suggest concrete improvements with examples.
+You are a senior Python code reviewer. Using the context above, analyze the code and provide suggestions or improvements.
 
 ### Review:
 """
@@ -62,11 +62,10 @@ def review_code_with_context(code: str):
         outputs = model.generate(
             **inputs,
             max_new_tokens=512,
-            # temperature=0.7,
-            # top_p=0.9,
+            temperature=0.7,
+            top_p=0.9,
             pad_token_id=tokenizer.eos_token_id
         )
-
     result = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return result.split("### Review:")[-1].strip()
 
@@ -86,5 +85,6 @@ if __name__ == "__main__":
     review = review_code_with_context(code)
     print("🧪 Review Result:\n")
     print(review)
+
 
 #python scripts/review_with_context.py examples/bad_code.py
