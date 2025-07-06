@@ -1,12 +1,12 @@
 # AI-Powered Code Review Assistant 
 
-An advanced AI-driven code review assistant powered by Qwen 0.5B, a state-of-the-art Large Language Model (LLM), fine-tuned with QLoRA on open-source code datasets. The system integrates Retrieval-Augmented Generation (RAG) using FAISS-based vector search over curated programming documentation, style guides, and security best practices to deliver context-aware code review comments, improvement suggestions, and security warnings.
+An advanced AI-driven code review assistant powered by Qwen 0.5B, a state-of-the-art Small Language Model (SLM), fine-tuned with QLoRA on open-source code datasets. The system integrates Retrieval-Augmented Generation (RAG) using FAISS-based vector search over curated programming documentation, style guides, and security best practices to deliver context-aware code review comments, improvement suggestions, and security warnings.
 
 ## Project Overview
 
 This project combines QLoRA fine-tuning and RAG techniques to create a smart code review pipeline. It uses:
 
-- Qwen 0.5B: An efficient open-source LLM for code understanding.
+- Qwen 0.5B: An efficient open-source SLM for code understanding.
 - QLoRA: Low-rank fine-tuning method for adapting the base model.
 - FAISS: Vector search engine for context retrieval from documentation.
 - SentenceTransformers: To embed code and doc snippets for retrieval.
