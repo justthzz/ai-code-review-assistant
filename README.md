@@ -1,75 +1,46 @@
-# 🧠 AI-Powered Code Review Assistant
+# AI-Powered Code Review Assistant
 
-An intelligent, context-aware code review assistant that leverages a fine-tuned Qwen 2.5B LLM and Retrieval-Augmented Generation (RAG) to provide accurate review comments, improvement suggestions, and security/style warnings.
-
----
-
-## 🚀 Project Overview
-
-This project combines QLoRA fine-tuning and RAG techniques to create a smart code review pipeline. It uses:
-
-- **Qwen 2.5B**: A powerful open-source Large Language Model for code understanding.
-- **QLoRA**: Efficient low-rank fine-tuning for adapting the base model to code review tasks.
-- **FAISS**: Vector search engine for retrieving relevant documentation and coding guidelines.
-- **RAG Pipeline**: Combines retrieved context with code snippets for LLM-powered insights.
+An intelligent, context-aware code review assistant that leverages a fine-tuned Qwen 0.5B Small Language Model (SLM) combined with Retrieval-Augmented Generation (RAG) to provide accurate review comments, improvement suggestions, and security/style warnings.
 
 ---
 
-## ✨ Features
+## Project Overview
 
-- 🔍 Context-aware code review with retrieval from language docs and style guides
-- 🤖 Fine-tuned LLM (Qwen 2.5B) using QLoRA on datasets like CodeParrot and CodeSearchNet
-- ⚡ Fast document retrieval with FAISS and sentence-transformers
-- 💬 Generates suggestions, refactor tips, and security/style warnings
-- 🔧 Modular pipeline: Train → Index → Inference
+This project integrates QLoRA fine-tuning and RAG techniques to build a smart code review pipeline. It utilizes:
 
----
-
-## 🛠️ Technologies
-
-- Qwen 2.5B (LLM)
-- QLoRA (via Hugging Face PEFT)
-- Hugging Face Transformers & Datasets
-- FAISS (vector similarity search)
-- Sentence Transformers
-- Python (backend)
+- **Qwen 0.5B**: An efficient Small Language Model optimized for code understanding tasks.
+- **QLoRA**: Low-rank adaptation method enabling efficient fine-tuning of large models on limited hardware.
+- **FAISS**: Vector similarity search engine for retrieving relevant documentation and coding guidelines.
+- **RAG Pipeline**: Combines retrieved contextual documents with code snippets for enhanced LLM-powered insights.
 
 ---
 
-## 🧑‍💻 Getting Started
+## Features
 
-### 1. Clone the Repository
+- Context-aware code review using retrieval from curated programming documentation and style guides.
+- Fine-tuned Qwen 0.5B model with QLoRA on code review datasets.
+- Fast document retrieval with FAISS and sentence-transformers embeddings.
+- Generates detailed suggestions, refactoring tips, and security/style warnings.
+- Modular pipeline covering training, indexing, and inference stages.
+
+---
+
+## Technologies Used
+
+- Qwen 0.5B Small Language Model
+- QLoRA fine-tuning via Hugging Face PEFT
+- Hugging Face Transformers and Datasets
+- FAISS for vector similarity search
+- Sentence Transformers for text embedding
+- Python backend implementation
+
+---
+
+### Clone the Repository
 
 ```bash
 git clone https://github.com/justthzz/ai-code-review-assistant.git
 cd ai-code-review-assistant
-```
-
-### 2. Install Requirements
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Fine-Tune the Model (QLoRA)
-
-```bash
-python src/train.py
-```
-
-You can change datasets or base models in `train.py`.
-
-### 4. Build the FAISS Knowledge Base
-
-```bash
-python src/build_faiss.py --docs_path ./docs/
-```
-
-### 5. Run Inference
-
-```bash
-python src/inference.py --code_file sample_code.py
-```
 
 ---
 
@@ -77,17 +48,20 @@ python src/inference.py --code_file sample_code.py
 
 ```
 .
-├── data/                # Optional: Sample code snippets or diffs
-├── docs/                # Curated programming docs and style guides
-├── models/              # Trained LLM checkpoints
-├── src/                 
-│   ├── train.py         # Fine-tuning with QLoRA
-│   ├── build_faiss.py   # Create FAISS index from documentation
-│   ├── inference.py     # Run the code review assistant
-│   └── utils.py         # Preprocessing, embedding, etc.
-├── requirements.txt
-├── README.md
-└── .gitignore
+├── checkpoints/         # Fine-tuned QLoRA adapter checkpoints (e.g., qlora-qwen)
+├── configs/             # Configuration files for training and fine-tuning
+├── data/                # Raw and processed datasets, e.g., code snippets and reviews
+├── docs/                # Curated programming documentation and style guides used for retrieval
+├── examples/            # Example code files for testing and inference
+├── inference/           # Inference scripts and utilities
+├── rag/                 # Retrieval-Augmented Generation related files (FAISS index, docs JSON)
+├── scripts/             # Utility scripts for running training, inference, or preprocessing
+├── training/            # Training related scripts and utilities
+├── src/                 # Core source code (training, building FAISS index, inference, utils)
+├── requirements.txt     # Python dependencies
+├── README.md            # Project documentation
+└── .gitignore           # Git ignore rules
+
 ```
 
 ---
@@ -102,15 +76,15 @@ Paste a code snippet into the input, and the system will:
 
 ---
 
-## ✅ To-Do
+## To-Do
 
-- [ ] GitHub PR integration (via GitHub Actions)
-- [ ] Web UI with FastAPI or Streamlit
-- [ ] Multi-language support
-- [ ] CLI Tool version
+- [ ] GitHub Pull Request integration via GitHub Actions.
+- [ ] Web user interface using FastAPI or Streamlit.
+- [ ] Support for multiple programming languages.
+- [ ] Command-line interface (CLI) tool version.
 
 ---
 
-## 🙌 Credits
+## Credits
 
 Built using open-source technologies from Hugging Face, Alibaba (Qwen), Meta (QLoRA), and community datasets.
