@@ -1,50 +1,55 @@
-# AI-Powered Code Review Assistant
+# AI-Powered Code Review Assistant 
 
-An intelligent, context-aware code review assistant that leverages a fine-tuned Qwen 0.5B Small Language Model (SLM) combined with Retrieval-Augmented Generation (RAG) to provide accurate review comments, improvement suggestions, and security/style warnings.
-
----
+An advanced AI-driven code review assistant powered by Qwen 0.5B, a state-of-the-art Large Language Model (LLM), fine-tuned with QLoRA on open-source code datasets. The system integrates Retrieval-Augmented Generation (RAG) using FAISS-based vector search over curated programming documentation, style guides, and security best practices to deliver context-aware code review comments, improvement suggestions, and security warnings.
 
 ## Project Overview
 
-This project integrates QLoRA fine-tuning and RAG techniques to build a smart code review pipeline. It utilizes:
+This project combines QLoRA fine-tuning and RAG techniques to create a smart code review pipeline. It uses:
 
-- **Qwen 0.5B**: An efficient Small Language Model optimized for code understanding tasks.
-- **QLoRA**: Low-rank adaptation method enabling efficient fine-tuning of large models on limited hardware.
-- **FAISS**: Vector similarity search engine for retrieving relevant documentation and coding guidelines.
-- **RAG Pipeline**: Combines retrieved contextual documents with code snippets for enhanced LLM-powered insights.
-
----
+- Qwen 0.5B: An efficient open-source LLM for code understanding.
+- QLoRA: Low-rank fine-tuning method for adapting the base model.
+- FAISS: Vector search engine for context retrieval from documentation.
+- SentenceTransformers: To embed code and doc snippets for retrieval.
+- RAG Pipeline: Blends retrieved knowledge with code snippets to power code review insights.
 
 ## Features
 
-- Context-aware code review using retrieval from curated programming documentation and style guides.
-- Fine-tuned Qwen 0.5B model with QLoRA on code review datasets.
-- Fast document retrieval with FAISS and sentence-transformers embeddings.
-- Generates detailed suggestions, refactoring tips, and security/style warnings.
-- Modular pipeline covering training, indexing, and inference stages.
+- Context-aware code review based on real documentation
+- Code suggestions, refactor tips, and PEP8/security/style warnings
+- Fine-tuned model using datasets like CodeParrot and CodeSearchNet
+- Human + Automatic evaluation support (BLEU, ROUGE, BERTScore)
+- Modular training, retrieval, and inference pipelines
 
----
+## Getting Started
 
-## Technologies Used
-
-- Qwen 0.5B Small Language Model
-- QLoRA fine-tuning via Hugging Face PEFT
-- Hugging Face Transformers and Datasets
-- FAISS for vector similarity search
-- Sentence Transformers for text embedding
-- Python backend implementation
-
----
-
-### Clone the Repository
-
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/justthzz/ai-code-review-assistant.git
 cd ai-code-review-assistant
+```
 
----
+### 2. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
-## 📁 Project Structure
+### 3. Fine-Tune the Model Using QLoRA
+```bash
+python src/train.py
+```
+Modify dataset or model configurations in `src/train.py` as needed.
+
+### 4. Build the FAISS Knowledge Base
+```bash
+python src/build_faiss.py --docs_path ./docs/
+```
+
+### 5. Run Inference
+```bash
+python src/inference.py --code_file sample_code.py
+```
+
+## Project Structure
 
 ```
 .
@@ -61,29 +66,36 @@ cd ai-code-review-assistant
 ├── requirements.txt     # Python dependencies
 ├── README.md            # Project documentation
 └── .gitignore           # Git ignore rules
-
 ```
 
----
+## Evaluation
 
-## 📌 Example Use Case
+You can evaluate the model with automatic metrics and human feedback:
 
-Paste a code snippet into the input, and the system will:
+```bash
+python scripts/evaluate_predictions.py
+python scripts/human_eval_viewer.py
+```
 
-- Retrieve relevant documentation or guidelines
-- Analyze code context
+Supported Metrics:
+- BLEU
+- ROUGE
+- BERTScore
+
+## Example Usage
+
+Input a code snippet to the system, which will:
+
+- Retrieve relevant documentation and guidelines
+- Analyze the code with contextual information
 - Generate human-like review comments, suggestions, and warnings
 
----
+## Future Work
 
-## To-Do
-
-- [ ] GitHub Pull Request integration via GitHub Actions.
-- [ ] Web user interface using FastAPI or Streamlit.
-- [ ] Support for multiple programming languages.
-- [ ] Command-line interface (CLI) tool version.
-
----
+- GitHub Pull Request integration via GitHub Actions
+- Web UI using FastAPI or Streamlit
+- Support for multiple programming languages
+- Command-line interface (CLI) tool version
 
 ## Credits
 
