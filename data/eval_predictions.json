@@ -1,0 +1,10 @@
+[
+  {
+    "prediction": "You should rename the function to follow snake_case.",
+    "reference": "Use snake_case for function names as per PEP8."
+  },
+  {
+    "prediction": "Consider adding type hints to improve clarity.",
+    "reference": "Adding type hints makes the code more readable and maintainable."
+  }
+]
